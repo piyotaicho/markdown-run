@@ -1,0 +1,60 @@
+{
+  "name": "markdown-runner",
+  "displayName": "Markdown Runner",
+  "description": "Run SQL and R fenced code blocks directly from Markdown files.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownRunner.runCodeBlock",
+        "title": "Markdown Runner: Run Current Code Block"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "markdownRunner.runCodeBlock",
+          "when": "editorLangId == markdown",
+          "group": "navigation@9"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Markdown Runner",
+      "properties": {
+        "markdownRunner.rTerminalNamePattern": {
+          "type": "string",
+          "default": "^(R|Rterm)",
+          "description": "Regex used to find an existing R terminal by terminal name."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "echo \"No lint configured\"",
+    "vscode:prepublish": "npm run compile",
+    "package": "npm run compile && vsce package --allow-missing-repository --skip-license",
+    "package:pre": "npm run compile && vsce package --pre-release --allow-missing-repository --skip-license",
+    "pretest": "npm run compile",
+    "test": "echo \"No tests yet\""
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.2",
+    "@types/node": "^22.10.1",
+    "@types/vscode": "^1.95.0",
+    "typescript": "^5.7.2"
+  }
+}

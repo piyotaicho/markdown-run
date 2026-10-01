@@ -1,0 +1,6 @@
+src/**
+.vscode/**
+.github/**
+node_modules/**
+tsconfig.json
+AGENTS.md
